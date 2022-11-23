@@ -9,7 +9,8 @@
 
 #include <QMainWindow>
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
@@ -39,9 +40,8 @@ protected:
 	void timerEvent(QTimerEvent *event) override;
 	void checkSrc();
 	void checkPico();
-	bool  m_hasSrc;
+	bool m_hasSrc;
 	bool m_hasPico;
-
 };
 
 #endif // MAINWINDOW_H
