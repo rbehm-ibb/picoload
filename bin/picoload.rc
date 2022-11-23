@@ -1,8 +1,0 @@
-[General]
-pico=/run/media/behm/RPI-RP2/
-src=/home/behm/Projects/SystemComm-Crypto/sw-play/pico-moduletest/build
-
-[defaults]
-date=23 Nov 2022 11:12:01 +0800
-name=picoload
-version=V0.1

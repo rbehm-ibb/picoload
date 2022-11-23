@@ -1,4 +1,7 @@
 .build
+bin
+unused
+Makefile
 .qmake.stash
 *.pro.user
 
