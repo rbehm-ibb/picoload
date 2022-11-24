@@ -10,6 +10,6 @@ of the uf2 file into the pico. This will flash and reset it.
 
 This  programm is just started and the  build dir set. Then it watches  for this occurance and flashes the firmware.
 
-It has the avantage that the (USB-)serial port is not touched. SO I can have minicom still running. minicom just automatically  reconnects
+It has the avantage that the (USB-)serial port is not touched. So I can have minicom still running. minicom just automatically reconnects
 after the download.
 

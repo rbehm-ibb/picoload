@@ -4,4 +4,4 @@ unused
 Makefile
 .qmake.stash
 *.pro.user
-
+.qtc_clangd
