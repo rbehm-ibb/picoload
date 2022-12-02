@@ -4,10 +4,10 @@
 // * created 2022-11-23 with pro-config V0.2
 // ******************************************************
 
+#include <QSerialPortInfo>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "config.h"
-#include "lediconsource.h"
 
 MainWindow::MainWindow(QString srcDir, QWidget *parent)
 	: QMainWindow(parent)
@@ -17,7 +17,11 @@ MainWindow::MainWindow(QString srcDir, QWidget *parent)
 {
 	ui->setupUi(this);
 	ui->srcDir->addAction(ui->actionSrcDir, QLineEdit::TrailingPosition);
+	ui->srcDir->addAction(ui->actionOpenSrcDir, QLineEdit::TrailingPosition);
 	ui->picoDir->addAction(ui->actionPicoDir, QLineEdit::TrailingPosition);
+	ui->serial->addAction(ui->actionOpenMinicom, QLineEdit::TrailingPosition);
+	m_styles.insert(false, "* { background: #ffff60; }");
+	m_styles.insert(true, "* { background: #60ff60; }");
 	if (srcDir.isEmpty())
 	{
 		srcDir = Config::stringValue("src");
@@ -30,6 +34,7 @@ MainWindow::MainWindow(QString srcDir, QWidget *parent)
 	m_dstDir.cdUp();
 	startTimer(1*500);
 	ui->binary->setText(QString());
+	statusBar()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -73,6 +78,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
 	Q_UNUSED(event);
 	checkSrc();
 	checkPico();
+	checkSerial();
 	if (m_hasSrc && m_hasPico)
 	{
 		QFile f(m_srcDir.absoluteFilePath(ui->binary->text()));
@@ -108,6 +114,7 @@ void MainWindow::checkSrc()
 		ui->binary->setText(uf2.first());
 		m_hasSrc = true;
 	}
+	ui->binLabel->setStyleSheet(m_styles.value(m_hasSrc));
 }
 
 void MainWindow::checkPico()
@@ -116,12 +123,46 @@ void MainWindow::checkPico()
 	const QStringList fl = m_dstDir.entryList();
 	if (! fl.isEmpty())
 	{
-		ui->picoLabel->setPixmap(LedIconSource::pix(LedIconSource::Green));
 		m_hasPico = true;
 	}
 	else
 	{
-		ui->picoLabel->setPixmap(LedIconSource::pix(LedIconSource::Yellow));
 		m_hasPico = false;
 	}
+	ui->picoLabel->setStyleSheet(m_styles.value(m_hasPico));
 }
+
+void MainWindow::checkSerial()
+{
+	m_hasSerial = false;
+	foreach (const QSerialPortInfo &spi, QSerialPortInfo::availablePorts())
+	{
+		if (spi.hasVendorIdentifier() && spi.vendorIdentifier() == 0x2e8a)
+		{
+//			qDebug() << Q_FUNC_INFO << spi.portName() << spi.serialNumber() << spi.manufacturer() << Qt::hex << spi.vendorIdentifier() << spi.productIdentifier() << Qt::dec;
+			m_hasSerial = true;
+			ui->serial->setText(spi.portName() + "\t" + spi.serialNumber());
+			break;
+		}
+	}
+	ui->serLabel->setStyleSheet(m_styles.value(m_hasSerial));
+	ui->actionOpenMinicom->setEnabled(m_hasSerial);
+	if (! m_hasSerial)
+	{
+		ui->serial->clear();
+	}
+}
+
+void MainWindow::on_actionOpenSrcDir_triggered()
+{
+	QDesktopServices::openUrl(m_srcDir.absolutePath());
+}
+
+
+void MainWindow::on_actionOpenMinicom_triggered()
+{
+	qDebug() << Q_FUNC_INFO;
+	QString cmd("/usr/bin/minicom");
+	QDesktopServices::openUrl(cmd);
+}
+

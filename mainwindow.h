@@ -30,6 +30,10 @@ private slots:
 
 	void on_actionPicoDir_triggered();
 
+	void on_actionOpenSrcDir_triggered();
+
+	void on_actionOpenMinicom_triggered();
+
 private:
 	Ui::MainWindow *ui;
 	QDir m_srcDir;
@@ -40,8 +44,11 @@ protected:
 	void timerEvent(QTimerEvent *event) override;
 	void checkSrc();
 	void checkPico();
+	void checkSerial();
+	QMap<bool,QString> m_styles;
 	bool m_hasSrc;
 	bool m_hasPico;
+	bool m_hasSerial;
 };
 
 #endif // MAINWINDOW_H

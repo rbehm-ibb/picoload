@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>229</height>
+    <width>465</width>
+    <height>183</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,12 +20,66 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QWidget" name="widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <layout class="QFormLayout" name="formLayout">
+         <property name="horizontalSpacing">
+          <number>9</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>1</number>
+         </property>
+         <property name="leftMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>6</number>
+         </property>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
@@ -34,33 +88,51 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="srcDir"/>
+          <widget class="QLineEdit" name="srcDir">
+           <property name="inputMask">
+            <string notr="true"/>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="binLabel">
            <property name="text">
             <string>Binary</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="binary">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
+         <item row="3" column="0">
           <widget class="QLabel" name="picoLabel">
            <property name="text">
             <string>Pico Dir</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="3" column="1">
           <widget class="QLineEdit" name="picoDir">
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="binary">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="serLabel">
+           <property name="text">
+            <string>Serial</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="serial">
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -74,7 +146,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>10</height>
           </size>
          </property>
         </spacer>
@@ -89,7 +161,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>440</width>
+     <width>465</width>
      <height>23</height>
     </rect>
    </property>
@@ -122,6 +194,24 @@
    </property>
    <property name="text">
     <string>PicoDir</string>
+   </property>
+  </action>
+  <action name="actionOpenSrcDir">
+   <property name="icon">
+    <iconset resource="../../../Qt/qt-library/lib/utils/stdicons.qrc">
+     <normaloff>:/stdicons/eye.png</normaloff>:/stdicons/eye.png</iconset>
+   </property>
+   <property name="text">
+    <string>OpenSrcDir</string>
+   </property>
+  </action>
+  <action name="actionOpenMinicom">
+   <property name="icon">
+    <iconset resource="../../../Qt/qt-library/lib/utils/stdicons.qrc">
+     <normaloff>:/right</normaloff>:/right</iconset>
+   </property>
+   <property name="text">
+    <string>OpenMinicom</string>
    </property>
   </action>
  </widget>
