@@ -141,7 +141,7 @@ void MainWindow::checkSerial()
 		{
 //			qDebug() << Q_FUNC_INFO << spi.portName() << spi.serialNumber() << spi.manufacturer() << Qt::hex << spi.vendorIdentifier() << spi.productIdentifier() << Qt::dec;
 			m_hasSerial = true;
-			ui->serial->setText(spi.portName() + "\t" + spi.serialNumber());
+			ui->serial->setText(spi.systemLocation() + "\tS/N:" + spi.serialNumber());
 			break;
 		}
 	}
@@ -161,8 +161,12 @@ void MainWindow::on_actionOpenSrcDir_triggered()
 
 void MainWindow::on_actionOpenMinicom_triggered()
 {
+	static const QChar sep('\t');
 	qDebug() << Q_FUNC_INFO;
-	QString cmd("/usr/bin/minicom");
-	QDesktopServices::openUrl(cmd);
+	QString cmd("konsole -e $SHELL -c \"/usr/bin/minicom -b 115200 -D %1 -w\" &");
+	QString dev = ui->serial->text().section(sep, 0, 0);
+	cmd = cmd.arg(dev);
+	qDebug() << Q_FUNC_INFO << cmd;
+	system(cmd.toLocal8Bit().constData());
 }
 

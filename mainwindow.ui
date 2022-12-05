@@ -186,6 +186,9 @@
    <property name="text">
     <string>SrcDir</string>
    </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;SrcDir: Select the dir where the binary (uf2) is created.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
   </action>
   <action name="actionPicoDir">
    <property name="icon">
@@ -194,6 +197,9 @@
    </property>
    <property name="text">
     <string>PicoDir</string>
+   </property>
+   <property name="toolTip">
+    <string>PicoDir: Select the dir where the PICO flash is mounted.</string>
    </property>
   </action>
   <action name="actionOpenSrcDir">
@@ -204,6 +210,9 @@
    <property name="text">
     <string>OpenSrcDir</string>
    </property>
+   <property name="toolTip">
+    <string>OpenSrcDir: Open the binary (build) dir in file manager.</string>
+   </property>
   </action>
   <action name="actionOpenMinicom">
    <property name="icon">
@@ -212,6 +221,9 @@
    </property>
    <property name="text">
     <string>OpenMinicom</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OpenMinicom: Start minicom with this device.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
  </widget>
