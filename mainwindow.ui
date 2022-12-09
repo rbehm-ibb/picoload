@@ -180,7 +180,7 @@
   </widget>
   <action name="actionSrcDir">
    <property name="icon">
-    <iconset resource="../../../Qt/qt-library/lib/utils/stdicons.qrc">
+    <iconset resource="../../../../Qt/qt-library/lib/utils/stdicons.qrc">
      <normaloff>:/fileopen</normaloff>:/fileopen</iconset>
    </property>
    <property name="text">
@@ -204,7 +204,7 @@
   </action>
   <action name="actionOpenSrcDir">
    <property name="icon">
-    <iconset resource="../../../Qt/qt-library/lib/utils/stdicons.qrc">
+    <iconset resource="../../../../Qt/qt-library/lib/utils/stdicons.qrc">
      <normaloff>:/stdicons/eye.png</normaloff>:/stdicons/eye.png</iconset>
    </property>
    <property name="text">
@@ -216,7 +216,7 @@
   </action>
   <action name="actionOpenMinicom">
    <property name="icon">
-    <iconset resource="../../../Qt/qt-library/lib/utils/stdicons.qrc">
+    <iconset resource="../../../../Qt/qt-library/lib/utils/stdicons.qrc">
      <normaloff>:/right</normaloff>:/right</iconset>
    </property>
    <property name="text">
@@ -224,6 +224,15 @@
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OpenMinicom: Start minicom with this device.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="icon">
+    <iconset resource="../../../../Qt/qt-library/lib/utils/stdicons.qrc">
+     <normaloff>:/wizard</normaloff>:/wizard</iconset>
+   </property>
+   <property name="text">
+    <string>Reset</string>
    </property>
   </action>
  </widget>
@@ -236,7 +245,7 @@
  </customwidgets>
  <resources>
   <include location="rsc/rsc.qrc"/>
-  <include location="../../../Qt/qt-library/lib/utils/stdicons.qrc"/>
+  <include location="../../../../Qt/qt-library/lib/utils/stdicons.qrc"/>
  </resources>
  <connections/>
 </ui>

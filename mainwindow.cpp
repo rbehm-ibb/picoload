@@ -8,6 +8,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "config.h"
+#include "termio.h"
 
 MainWindow::MainWindow(QString srcDir, QWidget *parent)
 	: QMainWindow(parent)
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QString srcDir, QWidget *parent)
 	ui->srcDir->addAction(ui->actionSrcDir, QLineEdit::TrailingPosition);
 	ui->srcDir->addAction(ui->actionOpenSrcDir, QLineEdit::TrailingPosition);
 	ui->picoDir->addAction(ui->actionPicoDir, QLineEdit::TrailingPosition);
+	ui->serial->addAction(ui->actionReset, QLineEdit::TrailingPosition);
 	ui->serial->addAction(ui->actionOpenMinicom, QLineEdit::TrailingPosition);
 	m_styles.insert(false, "* { background: #ffff60; }");
 	m_styles.insert(true, "* { background: #60ff60; }");
@@ -162,11 +164,40 @@ void MainWindow::on_actionOpenSrcDir_triggered()
 void MainWindow::on_actionOpenMinicom_triggered()
 {
 	static const QChar sep('\t');
-	qDebug() << Q_FUNC_INFO;
+//	qDebug() << Q_FUNC_INFO;
 	QString cmd("konsole -e $SHELL -c \"/usr/bin/minicom -b 115200 -D %1 -w\" &");
 	QString dev = ui->serial->text().section(sep, 0, 0);
 	cmd = cmd.arg(dev);
-	qDebug() << Q_FUNC_INFO << cmd;
+//	qDebug() << Q_FUNC_INFO << cmd;
 	system(cmd.toLocal8Bit().constData());
 }
 
+
+void MainWindow::on_actionReset_triggered()
+{
+	static const QChar sep('\t');
+	QString dev = ui->serial->text().section(sep, 0, 0);
+//	qDebug() << Q_FUNC_INFO << dev;
+	int fd = ::open(dev.toLocal8Bit().constData(), O_RDWR);
+	if (fd < 0)
+	{
+		qWarning() <<Q_FUNC_INFO << "no open";
+	}
+	struct termios tc;
+	int rc = ::tcgetattr(fd, &tc);
+	if (rc < 0)
+	{
+		qWarning() <<Q_FUNC_INFO << "no tcgetattr";
+	}
+	rc = ::cfsetspeed(&tc, B1200);
+	if (rc < 0)
+	{
+		qWarning() <<Q_FUNC_INFO << "no cfsetspeed";
+	}
+	rc =  ::tcsetattr(fd, TCSAFLUSH, &tc);
+	if (rc < 0)
+	{
+		qWarning() <<Q_FUNC_INFO << "no tcsetattr";
+	}
+	::close(fd);
+}

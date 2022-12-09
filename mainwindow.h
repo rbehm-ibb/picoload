@@ -34,6 +34,8 @@ private slots:
 
 	void on_actionOpenMinicom_triggered();
 
+	void on_actionReset_triggered();
+
 private:
 	Ui::MainWindow *ui;
 	QDir m_srcDir;
