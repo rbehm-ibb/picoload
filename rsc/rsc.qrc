@@ -3,6 +3,5 @@
         <file>defaults.rc</file>
         <file>logo.png</file>
         <file>launch.svgz</file>
-        <file>tab_go.png</file>
     </qresource>
 </RCC>
