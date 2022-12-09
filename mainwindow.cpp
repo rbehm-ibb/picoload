@@ -144,6 +144,7 @@ void MainWindow::checkSerial()
 //			qDebug() << Q_FUNC_INFO << spi.portName() << spi.serialNumber() << spi.manufacturer() << Qt::hex << spi.vendorIdentifier() << spi.productIdentifier() << Qt::dec;
 			m_hasSerial = true;
 			ui->serial->setText(spi.systemLocation() + "\tS/N:" + spi.serialNumber());
+			ui->serial->setEnabled(true);
 			break;
 		}
 	}
@@ -152,6 +153,8 @@ void MainWindow::checkSerial()
 	if (! m_hasSerial)
 	{
 		ui->serial->clear();
+		ui->serial->setDisabled(true);
+//		ui->actionOpenMinicom->setDisabled(true);
 	}
 }
 

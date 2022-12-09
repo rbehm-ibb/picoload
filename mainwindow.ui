@@ -229,7 +229,7 @@
   <action name="actionReset">
    <property name="icon">
     <iconset resource="rsc/rsc.qrc">
-     <normaloff>:/disconnect.png</normaloff>:/disconnect.png</iconset>
+     <normaloff>:/launch.svgz</normaloff>:/launch.svgz</iconset>
    </property>
    <property name="text">
     <string>Reset</string>
