@@ -1,5 +1,8 @@
 # picoload
-A (down) loader for the RPi pico
+A (down) loader for the RPi pico.
+
+Tested on OpenSuse 15.2/.4 with Qt5.15.2
+Some functions will not work in Winxx (Thats probably all actions defien for the serial port: board reset +  start minicom)
 
 The standard downloader from the RP2040 SDK does not work for me.
 
@@ -12,4 +15,9 @@ This  programm is just started and the  build dir set. Then it watches  for this
 
 It has the avantage that the (USB-)serial port is not touched. So I can have minicom still running. minicom just automatically reconnects
 after the download.
+
+Board reset (to boot mode) is achieved by setting the USB serial port to  1200 baud.
+This does not disturb a connected minicom.
+minicom is intelligent enough to detect a port reset and keep its fingers of the port to allow the USB stack to reuse the same port-id (ttyACMx).
+After this minicom reopens the port again and works as if nothing hadhappened.
 
