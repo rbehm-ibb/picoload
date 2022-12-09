@@ -36,7 +36,7 @@ MainWindow::MainWindow(QString srcDir, QWidget *parent)
 	m_dstDir.cdUp();
 	startTimer(1*500);
 	ui->binary->setText(QString());
-	statusBar()->hide();
+//	statusBar()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -181,23 +181,35 @@ void MainWindow::on_actionReset_triggered()
 	int fd = ::open(dev.toLocal8Bit().constData(), O_RDWR);
 	if (fd < 0)
 	{
-		qWarning() <<Q_FUNC_INFO << "no open";
+//		statusBar()->show();
+		statusBar()->showMessage(dev + ": no open", 20*1000);
+		qWarning() << Q_FUNC_INFO << "no open";
+		return;
 	}
 	struct termios tc;
 	int rc = ::tcgetattr(fd, &tc);
 	if (rc < 0)
 	{
-		qWarning() <<Q_FUNC_INFO << "no tcgetattr";
+		statusBar()->showMessage(dev + ": no tcgetattr", 20*1000);
+		qWarning() << Q_FUNC_INFO << "no tcgetattr";
+		::close(fd);
+		return;
 	}
 	rc = ::cfsetspeed(&tc, B1200);
 	if (rc < 0)
 	{
-		qWarning() <<Q_FUNC_INFO << "no cfsetspeed";
+		statusBar()->showMessage(dev + ": no cfsetspeed", 20*1000);
+		qWarning() << Q_FUNC_INFO << "no cfsetspeed";
+		::close(fd);
+		return;
 	}
 	rc =  ::tcsetattr(fd, TCSAFLUSH, &tc);
 	if (rc < 0)
 	{
-		qWarning() <<Q_FUNC_INFO << "no tcsetattr";
+		statusBar()->showMessage(dev + ": no tcsetattr", 20*1000);
+		qWarning() << Q_FUNC_INFO << "no tcsetattr";
+		::close(fd);
+		return;
 	}
 	::close(fd);
 }
