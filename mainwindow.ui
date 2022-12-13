@@ -234,8 +234,8 @@
   </action>
   <action name="actionReset">
    <property name="icon">
-    <iconset resource="../../../../Qt/qt-library/lib/utils/stdicons.qrc">
-     <normaloff>:/wizard</normaloff>:/wizard</iconset>
+    <iconset resource="rsc/rsc.qrc">
+     <normaloff>:/launch.svgz</normaloff>:/launch.svgz</iconset>
    </property>
    <property name="text">
     <string>Reset</string>
