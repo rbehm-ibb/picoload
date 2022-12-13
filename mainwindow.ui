@@ -92,6 +92,9 @@
            <property name="inputMask">
             <string notr="true"/>
            </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item row="1" column="0">
@@ -112,6 +115,9 @@
           <widget class="QLineEdit" name="picoDir">
            <property name="text">
             <string/>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
